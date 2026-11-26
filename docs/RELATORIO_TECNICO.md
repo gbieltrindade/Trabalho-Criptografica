@@ -2,12 +2,12 @@
 
 ## 7.1 Identificação
 
-| Campo | Informação |
-|---|---|
-| Integrantes | *(Nome 1 — matrícula; Nome 2 — matrícula; Nome 3 — matrícula)* |
-| Turma | *(preencher)* |
-| Linguagem | Python 3.12 (compatível com 3.9+) |
-| Repositório | *(https://github.com/usuario/seguranca-grupo-XX)* — tag `v1.0-entrega` |
+| Campo       | Informação                                                                       |
+| ----------- | -------------------------------------------------------------------------------- |
+| Integrantes | Ester Marina, Gabriel Trindade, Lorena Alice                                     |
+| Turma       | 5 / V                                                                            |
+| Linguagem   | Python 3.12 (compatível com 3.9+)                                                |
+| Repositório | _(https://github.com/gbieltrindade/Trabalho-Criptografica)_ — tag `v1.0-entrega` |
 
 ## 7.2 Descrição da Solução
 
@@ -21,6 +21,7 @@ comparação de hashes em tempo constante; `argparse` para a CLI; `unittest` par
 `tests/test_seguranca.py` executam a CLI como processo externo.
 
 **Principais decisões técnicas.**
+
 - Ed25519 aplicado **diretamente aos bytes** do arquivo (sem pré-hash), como exige o contrato.
 - Leitura estritamente binária; o hash é calculado em blocos de 1 MiB (suporta arquivos grandes).
 - Chaves: privada em PKCS#8 sem senha, pública em SubjectPublicKeyInfo; `.sig` com exatamente 64 bytes.
@@ -32,14 +33,14 @@ comparação de hashes em tempo constante; `argparse` para a CLI; `unittest` par
 
 ## 7.3 Funcionalidades Implementadas
 
-| Req. | Descrição | Comando | Status |
-|---|---|---|---|
-| R01 | Gerar par de chaves Ed25519 | `keygen` | Atendido |
-| R02 | Calcular SHA-256 | `hash` | Atendido |
-| R03 | Comparar hash com referência | `check` | Atendido (aceita referência em maiúsculas/minúsculas; exige 64 hex) |
-| R04 | Assinar arquivo com chave privada | `sign` | Atendido |
-| R05 | Verificar assinatura com chave pública | `verify` | Atendido |
-| R06 | Rejeitar assinaturas inválidas/adulteração | `verify` | Atendido (código 1 e mensagem "INVÁLIDA") |
+| Req. | Descrição                                  | Comando  | Status                                                              |
+| ---- | ------------------------------------------ | -------- | ------------------------------------------------------------------- |
+| R01  | Gerar par de chaves Ed25519                | `keygen` | Atendido                                                            |
+| R02  | Calcular SHA-256                           | `hash`   | Atendido                                                            |
+| R03  | Comparar hash com referência               | `check`  | Atendido (aceita referência em maiúsculas/minúsculas; exige 64 hex) |
+| R04  | Assinar arquivo com chave privada          | `sign`   | Atendido                                                            |
+| R05  | Verificar assinatura com chave pública     | `verify` | Atendido                                                            |
+| R06  | Rejeitar assinaturas inválidas/adulteração | `verify` | Atendido (código 1 e mensagem "INVÁLIDA")                           |
 
 Tratamento de erros: arquivo inexistente, diretório no lugar de arquivo, caminho de destino inválido,
 PEM corrompido, chave incompatível, hash de referência malformado e assinatura truncada, todos com mensagem
@@ -50,14 +51,14 @@ compreensível e código ≠ 0.
 Execução: `python -m unittest discover -s tests -v` → **34 testes, todos aprovados**
 (evidência: `docs/evidencias/execucao_testes.txt`; fluxo ponta a ponta em `docs/evidencias/execucao_demo.txt`).
 
-| ID | Teste | Resultado esperado | Resultado obtido | Evidência |
-|---|---|---|---|---|
-| TI01 | SHA-256 de um arquivo | Hash correto | Aprovado (inclui vetor NIST de "abc") | `test_TI01_*` |
-| TI02 | Modificar arquivo e comparar com hash original | Divergência | Aprovado (código 1) | `test_TI02_*` |
-| TI03 | Gerar par de chaves | PEM válidos | Aprovado (PKCS#8 / SPKI) | `test_TI03_*` |
-| TI04 | Assinar e verificar original | Assinatura válida | Aprovado (código 0) | `test_TI04_*` |
-| TI05 | Alterar arquivo após assinatura | Assinatura inválida | Aprovado (código 1) | `test_TI05_*` |
-| TI06 | Verificar com outra chave pública | Assinatura inválida | Aprovado (código 1) | `test_TI06_*` |
+| ID   | Teste                                          | Resultado esperado  | Resultado obtido                      | Evidência     |
+| ---- | ---------------------------------------------- | ------------------- | ------------------------------------- | ------------- |
+| TI01 | SHA-256 de um arquivo                          | Hash correto        | Aprovado (inclui vetor NIST de "abc") | `test_TI01_*` |
+| TI02 | Modificar arquivo e comparar com hash original | Divergência         | Aprovado (código 1)                   | `test_TI02_*` |
+| TI03 | Gerar par de chaves                            | PEM válidos         | Aprovado (PKCS#8 / SPKI)              | `test_TI03_*` |
+| TI04 | Assinar e verificar original                   | Assinatura válida   | Aprovado (código 0)                   | `test_TI04_*` |
+| TI05 | Alterar arquivo após assinatura                | Assinatura inválida | Aprovado (código 1)                   | `test_TI05_*` |
+| TI06 | Verificar com outra chave pública              | Assinatura inválida | Aprovado (código 1)                   | `test_TI06_*` |
 
 Testes adicionais: interoperabilidade bidirecional com OpenSSL, assinatura de 64 bytes, dados binários,
 arquivo vazio, não normalização de fim de linha, bit alterado na assinatura e demais cenários de erro e uso incorreto.
