@@ -16,7 +16,7 @@ assina arquivos e verifica assinaturas.
 Requisitos: Python 3.9 ou superior e `pip`.
 
 ```bash
-git clone https://github.com/gbieltrindade/Trabalho-Criptografica.git
+git clone https://github.com/gbieltrindade/seguranca-grupo-esterMarina-gabrielTrindade-lorena
 cd Trabalho-Criptografica
 
 # (recomendado) ambiente virtual
