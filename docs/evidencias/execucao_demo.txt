@@ -1,0 +1,20 @@
+== 1. Gerar chaves ==
+Chave privada gravada em: /tmp/tmp.ADJKgdfVrT/priv.pem
+Chave pública gravada em: /tmp/tmp.ADJKgdfVrT/pub.pem
+ATENÇÃO: mantenha a chave privada em sigilo.
+== 2. Hash SHA-256 ==
+ae4a5b562aaf0587f9b40ccd77a85d5ce8c8c16019734145177af63c7268a47f
+== 3. Conferir hash ==
+HASH CONFERE: o arquivo corresponde ao hash de referência.
+código de saída: 0
+== 4. Assinar ==
+Assinatura gerada em: /tmp/tmp.ADJKgdfVrT/doc.sig (64 bytes)
+== 5. Verificar (original) ==
+ASSINATURA VÁLIDA: o arquivo é íntegro e foi assinado pela chave privada correspondente.
+código de saída: 0
+== 6. Adulterar e verificar ==
+ASSINATURA INVÁLIDA: o arquivo foi alterado ou a chave/assinatura não corresponde.
+código de saída: 1
+== 7. Outra chave pública ==
+ASSINATURA INVÁLIDA: o arquivo foi alterado ou a chave/assinatura não corresponde.
+código de saída: 1
