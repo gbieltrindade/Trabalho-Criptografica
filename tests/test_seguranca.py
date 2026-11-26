@@ -163,6 +163,21 @@ class TestesContrato(BaseTeste):
         h_lf = executar("hash", self.doc).stdout.strip()
         self.assertNotEqual(h_crlf, h_lf)
 
+    def test_arquivo_utf8_acentuado(self):
+        # Acentos e símbolos UTF-8: hash e assinatura devem operar sobre os bytes
+        # originais, sem alterar a codificação.
+        dados = "Declaração de Matrícula — João da Conceição, ação nº 1/2026 ✓\n".encode("utf-8")
+        self.escrever(self.doc, dados)
+        r = executar("hash", self.doc)
+        self.assertEqual(r.returncode, 0)
+        self.assertEqual(r.stdout.strip(), hashlib.sha256(dados).hexdigest())
+        priv, pub = self.gerar_chaves()
+        sig = self.assinar(priv)
+        self.assertEqual(executar("verify", self.doc, pub, sig).returncode, 0)
+        # Mesmo texto em outra codificação (latin-1) gera bytes diferentes -> inválida
+        self.escrever(self.doc, "Declaração de Matrícula".encode("latin-1"))
+        self.assertEqual(executar("verify", self.doc, pub, sig).returncode, 1)
+
     def test_check_aceita_referencia_em_maiusculas(self):
         h = executar("hash", self.doc).stdout.strip()
         self.assertEqual(executar("check", self.doc, h.upper()).returncode, 0)
