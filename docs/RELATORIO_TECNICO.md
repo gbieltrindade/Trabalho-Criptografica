@@ -2,10 +2,10 @@
 
 ## 7.1 Identificação
 
-| Campo       | Informação                                                                       |
+| Campo       | Segurança da Informação                                                                       |
 | ----------- | -------------------------------------------------------------------------------- |
 | Integrantes | Ester Marina, Gabriel Trindade, Lorena Alice                                     |
-| Turma       | 5 / V                                                                            |
+| Turma       | 5                                                                                |
 | Linguagem   | Python 3.12 (compatível com 3.9+)                                                |
 | Repositório | _(https://github.com/gbieltrindade/Trabalho-Criptografica)_ — tag `v1.0-entrega` |
 
