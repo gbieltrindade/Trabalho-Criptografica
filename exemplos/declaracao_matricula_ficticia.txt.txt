@@ -1,0 +1,9 @@
+INSTITUTO FEDERAL DO PARA
+DECLARACAO DE MATRICULA
+
+Declaramos para os devidos fins que o(a) estudante Aluno Fulano de Tal,
+matricula 20260013, encontra-se regularmente matriculado(a) no curso de
+Engenharia de Software no periodo letivo de 2026.2.
+
+Documento gerado exclusivamente para validacao de integridade (SHA-256)
+e assinatura digital (Ed25519).
